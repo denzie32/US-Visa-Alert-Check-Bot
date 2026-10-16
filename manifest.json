@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "VAC Slot Change Alert",
+  "version": "1.0.4",
+  "description": "Alerts when H-1B VAC availability changes on the open visa-slots page.",
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon.png"
+  },
+  "permissions": ["alarms", "notifications", "offscreen", "storage", "tabs"],
+  "host_permissions": ["https://checkvisaslots.com/latest-us-visa-availability/h-1b-regular/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icon16.png",
+      "32": "icon32.png"
+    },
+    "default_title": "VAC Slot Alert",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://checkvisaslots.com/latest-us-visa-availability/h-1b-regular/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
